@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:p="http://primefaces.org/ui"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	   xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:head>
+	<title>Login Form</title>
+	</h:head>
+<h:body>
+<h:form id="form1">
+
+
+
+<p:panel id="panel" header="Login">
+  <p:messages id="msgs" />
+<h:panelGrid id="panel1"   columns="3" cellpadding="5"  style="margin-top:20px">
+
+			
+				
+			<p:outputLabel value="Username:" />
+			 
+			<p:inputText value="#{loginBean.username}" id="un"   required="true" label="Username">
+			  <f:validateLength minimum="2" />
+			</p:inputText>
+			     <p:message for="un" display="icon" />
+			
+			<p:outputLabel value="Password:" />
+			 
+			<p:password value="#{loginBean.password}" id="pass"   required="true" label="Password">
+			  <f:validateLength minimum="2" />
+			</p:password>
+			   <p:message for="pass" display="icon" />
+			</h:panelGrid>
+			<p:commandButton value="Login" update="panel" action="#{loginBean.validateUser}" icon="ui-icon-check">
+			
+			</p:commandButton>
+
+	<c:if test="#{employee.msg==null}">
+	
+	<h:outputLabel value="#{loginBean.msg}" id="logmsg" styleClass="msg" />
+	</c:if>
+	<c:otherwise>
+	<h:outputLabel value="#{employee.msg}" id="msg" styleClass="msg" />
+	</c:otherwise>
+	
+						
+
+</p:panel>
+
+
+	
+		
+</h:form>
+</h:body>
+</html>

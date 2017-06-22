@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:p="http://primefaces.org/ui"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	   xmlns:ui="http://java.sun.com/jsf/facelets"
+	  >
+	  
+<h:head>
+
+<title>Insert title here</title>
+
+
+</h:head>
+
+    <ui:composition template="/templates/adminPage-template.xhtml">
+        <ui:define name="title">
+            Title for Index page
+        </ui:define>
+        <div id="container">
+           
+           
+            <ui:define name="content">
+              <h:form id="form1">
+<h:panelGrid columns="2" cellpadding="2" border="1">
+<f:facet name="header1">
+			
+				<h:outputText  value="Add Designation" />
+			</f:facet>
+			<h:outputLabel value="Designation:" />
+			 
+			<h:inputText id="dn" value="#{designationBean.designationName}" required="true" requiredMessage="Designation required" >
+			<f:validateRequired />
+			</h:inputText>
+			<h:outputLabel value="Designation value:" />
+			 
+			<h:inputText id="dv" value="#{designationBean.designationValue}" required="true" requiredMessage="Designation value required" >
+			<f:validateRequired />
+			</h:inputText>
+			<f:facet name="footer">
+			<h:commandButton value="Submit" action="#{designationBean.saveDesignation}">
+			<f:ajax  execute="@form"  render=":form2:todoList"/>
+			</h:commandButton>
+			<h:commandButton value="Reset" action="#{designationBean.reset}"></h:commandButton>
+			</f:facet>
+
+</h:panelGrid>
+<h:message for="dn" style="color:red" />
+<br/>
+<h:message for="dv" style="color:red" />
+
+
+</h:form>
+<br/>
+<br/>
+
+<h:form id="form2">
+<p:dataTable id="todoList" value="#{designationBean.showDesignation}" var="desig">
+
+    <p:column headerText="Designation Id">
+                       <h:outputText value="#{desig.designationId}" id="custId" />
+                   </p:column>
+
+                   <p:column headerText="Designation">
+                       <h:outputText value="#{desig.designationName}" id="dn" />
+                   </p:column>
+                     <p:column headerText="Designation Value">
+                       <h:outputText value="#{desig.designationValue}" id="dv" />
+                   </p:column>
+                       <p:column headerText="">
+                     
+				<h:commandButton value="Edit" action="#{designationBean.editDesignation(desig)}" >
+					<f:ajax render=":form1" execute="@form"   />
+				</h:commandButton>
+				<h:commandButton value="Delete" action="#{designationBean.deleteDesignation(desig)}">
+					<f:ajax render="todoList" execute="@form" />
+				</h:commandButton>
+				</p:column>
+                     
+				
+				
+                   </p:dataTable>
+                   <br/>
+                   
+                   <br/>
+	<br/>
+	 <!-- <div style = "border-width:2px; border-color:red; border-style:solid;">
+         <ui:insert name = "footer" >
+            <ui:include src = "/templates/admin_footer.xhtml" />
+         </ui:insert>
+      </div>
+</h:form>
+            </ui:define>
+              <ui:define name="bottom">
+                <ui:include src="footer.xhtml"></ui:include>
+            </ui:define>
+        </div> -->
+    </ui:composition>
+
+</html>

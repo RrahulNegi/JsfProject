@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:p="http://primefaces.org/ui"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  	  xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+
+<title>Insert title here</title>
+</h:head>
+<h:body>
+ <ui:composition template="/templates/userpage-template.xhtml">
+        <ui:define name="title">
+            Designation Master
+        </ui:define>
+        <div id="container">
+          
+           <br/>
+           <br/>
+             <ui:define name="content">
+          
+
+
+
+<b>Name :</b> <h:outputLabel value="#{loginBean.employeeMangedBean.firstName}"></h:outputLabel> <h:outputLabel value="#{loginBean.employeeMangedBean.lastName}"/>
+<br/>
+<b>Mobile No :</b><h:outputLabel value="#{loginBean.editMyProfile.mobileNumber}"></h:outputLabel>
+<b>Email :</b><h:outputLabel value="#{loginBean.employeeMangedBean.email}"></h:outputLabel>
+
+<br/>
+<br/>
+<b>Address: </b><br/>
+<b>Home Address :</b> <h:outputLabel value="#{loginBean.editMyProfile.homeAddress}"></h:outputLabel> 
+
+ </ui:define>
+          
+            <ui:define name="Logout">
+                <ui:include src="logout.xhtml"></ui:include>
+            </ui:define>
+
+
+</div>
+</ui:composition>
+<br/>
+	<br/>
+	 
+	
+</h:body>
+
+</html>

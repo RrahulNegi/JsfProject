@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:p="http://primefaces.org/ui"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  >
+<h:head>
+	<title>Employee Form</title>
+
+</h:head>
+<h:body>
+ <ui:composition template="/templates/adminPage-template.xhtml">
+        <ui:define name="title">
+            Employee Master
+        </ui:define>
+        <div id="container">
+           
+           <br/>
+           <br/>
+             <ui:define name="content">
+             <h:form id="form1">
+	
+	<h:inputHidden  value="#{employee.custId}" id="custId"></h:inputHidden>
+		<h:panelGrid id="panel1" columns="2" border="0" cellpadding="5"
+			cellspacing="1">
+			<f:facet name="header">
+			
+				<h:outputText  value="Add Employee Information" />
+			</f:facet>
+			<h:outputLabel value="First Name:" />
+			 
+			<h:inputText value="#{employee.firstName}" id="fn" required="true" requiredMessage="You must enter First Name" >
+			<f:validateRequired />
+			</h:inputText>
+			 
+			<h:outputLabel value="Last Name:" />
+			 
+			<h:inputText value="#{employee.lastName}" id="ln"  required="true" requiredMessage="You must enter Last Name">
+						<f:validateRequired />
+			
+			</h:inputText>
+		
+			<h:outputLabel value="Email:" />
+			 
+			<h:inputText value="#{employee.email}" id="eml"  required="true" requiredMessage="You must enter valid email" validatorMessage="Not a valid email ">
+						    <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+
+			
+			</h:inputText>
+			
+			<h:outputLabel value="Designation:"></h:outputLabel>
+			
+			<h:selectOneMenu value="#{employee.designationId}" required="true" requiredMessage="Please select designation" id="dsg">
+			    <f:selectItem itemValue="" itemLabel="Select One"/>
+			
+   			<f:selectItems value="#{employee.designationList}"  />
+   			<f:validateRequired></f:validateRequired>
+   		</h:selectOneMenu>
+   		
+   		
+			<h:outputLabel value="Username:" />
+			 
+			<h:inputText value="#{employee.username}" id="unm"  required="true" requiredMessage="Please select username">
+			<f:validateRequired></f:validateRequired>
+			</h:inputText>
+			
+			<h:outputLabel value="Password:" />
+			 
+			<h:inputText value="#{employee.password}" id="pass"  required="true" requiredMessage="Please select password" >
+						<f:validateRequired></f:validateRequired>
+			
+			</h:inputText>
+			
+			<f:facet name="footer">
+				<h:commandButton value="Save" action="#{employee.saveEmployee}" >
+					
+				</h:commandButton>
+				
+<input type="reset" value="Reset"/>
+			</f:facet>
+			
+		</h:panelGrid>
+<h:message for="fn" style="color:red" />
+<br/>
+<h:message for="ln" style="color:red" />
+<br/>
+<h:message for="eml" style="color:red" />
+<br/>
+<h:message for="dsg" style="color:red" />
+<br/>
+<h:message for="unm" style="color:red" />
+<br/>
+<h:message for="pass" style="color:red" />
+
+	</h:form>
+	<br/>
+	<br/>
+	<h:form id="form2" prependId="false">
+	<h:outputLabel value="#{employee.msg}" id="msg"></h:outputLabel>
+	<br/>
+	<br/>
+	 <p:dataTable id="todoList" var="emp" value="#{employee.allCustomers}" lazy="true" >
+                  <p:column headerText="Employee Id">
+                       <h:outputText value="#{emp.custId}" id="custId" />
+                   </p:column>
+
+                   <p:column headerText="First Name">
+                       <h:outputText value="#{emp.firstName}" id="fn" />
+                   </p:column>
+                    <p:column headerText="Last Name">
+                       <h:outputText value="#{emp.lastName}" id="ln" />
+                   </p:column>
+                    <p:column headerText="Email">
+                       <h:outputText value="#{emp.email}" id="eml" />
+                   </p:column>
+                    <p:column headerText="Designation">
+                       <h:outputText value="#{emp.designationBean.designationName}" id="emd" />
+                   </p:column>
+                   <p:column headerText="Username">
+                       <h:outputText value="#{emp.username}" id="unm" />
+                   </p:column>
+                    <p:column headerText="Password">
+                       <h:outputText value="#{emp.password}" id="pass" />
+                   </p:column>
+                   
+                          
+                     <p:column headerText="">
+                     
+				<h:commandButton value="Edit" action="#{employee.editEmployee(emp)}" >
+					<f:ajax render=":form1" execute="@form"   />
+				</h:commandButton>
+				<h:commandButton value="Delete" action="#{employee.deleteEmployee(emp)}">
+					<f:ajax render=":form2:todoList  :form2:msg" execute=":form2" />
+				</h:commandButton>
+				</p:column>
+                   </p:dataTable>
+                   <br/>
+                   
+                   <br/>
+                   <br/>
+                   
+	</h:form>
+             </ui:define>
+         
+            <ui:define name="Logout">
+                <ui:include src="logout.xhtml"></ui:include>
+            </ui:define>
+</div>
+</ui:composition>
+	
+	<br/>
+	<br/>
+	
+</h:body>
+</html>

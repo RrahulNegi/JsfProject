@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:p="http://primefaces.org/ui"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<title>Login Form</title>
+	<style>
+tfoot {
+	text-align: center;
+}
+
+thead {
+	
+	color: black;
+}
+
+td {
+	font-weight: bold;
+}
+
+.msg {
+	font-size: small;
+	color: black;
+}
+.error {
+	font-size: small;
+	color: red;
+}
+</style>
+</h:head>
+<h:body>
+<h:form id="form">
+<p:panel id="panel">
+
+<p:inputText value="#{ajaxEx.name}" id="fn"  required="true"></p:inputText>
+<h:outputLabel value="#{ajaxEx.name}"  id="msg1" styleClass="msg" />
+<h:message for="fn" style="color:red" />
+<p:commandButton value="Login" update="panel2" action="#{ajaxEx.show}" icon="ui-icon-check" >
+			
+			</p:commandButton>
+
+
+
+</p:panel>
+<p:panel id="panel2">
+
+
+				<h:outputLabel value="#{ajaxEx.msg}"  id="msg" styleClass="msg" />
+				<p:commandButton value="Login" update="fn" action="#{ajaxEx.put}" process="@this" icon="ui-icon-check" ajax="true" >
+			
+			</p:commandButton>
+</p:panel>
+
+</h:form>
+</h:body>
+</html>

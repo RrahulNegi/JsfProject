@@ -1,0 +1,74 @@
+@CHARSET "ISO-8859-1";
+<br/>
+ body{        
+        padding-top: 60px;
+        padding-bottom: 40px;
+    }
+    .container{
+        width: 80%;
+        margin: 0 auto; /* Center the DIV horizontally */
+    }
+    .fixed-header, .fixed-footer{
+        width: 100%;
+        position: fixed;        
+        background: #333;
+        padding: 10px 0;
+        color: #fffff;
+    }
+    .fixed-header{
+        top: 0;
+    }
+    .fixed-footer{
+        bottom: 0;
+         color: #fff;
+        text-decoration: none;
+        padding: 7px 25px;
+        display: inline-block;
+    }    
+    /* Some more styles to beutify this example */
+ .menutext{
+        color: #fff;
+        text-decoration: none;
+        padding: 0px 25px;
+        display: inline-block;
+    }
+    
+    .logoutlink{
+    
+     	color: #fff;
+        text-decoration: none;
+        padding: 7px 25px;
+      
+         position:absolute;
+   top:0;
+   right:0;
+    }
+    
+    .logouttext{
+    
+     	color: #fff;
+        text-decoration: none;
+        padding: 7px 25px;
+      
+    }
+    .container p{
+        line-height: 200px; /* Create scrollbar to test positioning */
+    }
+    
+   .leftnav {
+    margin-left: 0px;
+    padding-left: 0px;
+    margin-right: 0px;
+    width: 40px;
+    height:400px;
+    /* [ReplaceColor(themeColor: "SubtleEmphasisBackground")] */ background-color: #f1f1f1;
+}
+
+.contentStyle{
+	
+	
+	
+	margin-left: 60px;
+}
+
+#sidebar {float:left; background: #dadada; width:200px;  height:400px; margin:0;top:0}

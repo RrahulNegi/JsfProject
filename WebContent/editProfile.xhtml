@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	>
+<h:head>
+	<title>Employee Form</title>
+
+</h:head>
+<h:body onload="submit()" valueChangeListener="#{editProfile.countryLocaleCodeChanged('in')}">
+	<ui:composition template="/templates/userpage-template.xhtml">
+		<ui:define name="title">
+           Edit Profile
+        </ui:define>
+		<div id="container">
+			<ui:define name="top">
+				<div id="blank"></div>
+				<div id="menu">
+					<ui:include src="usermenu.xhtml" />
+				</div>
+			</ui:define>
+			<br /> <br />
+
+			<ui:define name="content">
+				<h:form id="form1">
+	<h:inputHidden value="#{editProfile.userId}"></h:inputHidden>
+					<h:panelGrid id="panel1" columns="2" border="0" cellpadding="5"
+						cellspacing="1">
+						<f:facet name="header">
+
+							<h:outputText value="Edit Profile" />
+						</f:facet>
+						<h:outputLabel value="Address" />
+						<h:outputLabel></h:outputLabel>
+						<h:outputLabel value="Country :"></h:outputLabel>
+
+						<h:selectOneMenu value="#{editProfile.country}" required="true"
+							requiredMessage="Please select country" id="cty"
+							onchange="submit()"
+							valueChangeListener="#{editProfile.countryLocaleCodeChanged}">
+							<f:selectItem itemValue="" itemLabel="Select One" />
+
+							<f:selectItems value="#{editProfile.countryValue}" />
+						</h:selectOneMenu>
+
+						<h:outputText value="State :"></h:outputText>
+						<h:selectOneMenu value="#{editProfile.state}" required="true"
+							requiredMessage="Please select state" id="st">
+
+
+							<f:selectItems value="#{editProfile.stateValue}" />
+							<f:validateRequired></f:validateRequired>
+						</h:selectOneMenu>
+						<h:outputText value="Home Address :"></h:outputText>
+						<h:inputTextarea value="#{editProfile.homeAddress}" id="ha"></h:inputTextarea>
+
+						<h:outputText value="Mobile No :"></h:outputText>
+						<h:inputText value="#{editProfile.mobileNumber}" id="mb" validatorMessage="Not a valid number">
+						  <f:validateRegex pattern="(^[1-9]{9}$)"  />
+						</h:inputText>
+
+						<h:outputText value="Hobbies :"></h:outputText>
+						<h:inputTextarea value="#{editProfile.hobbies}" id="hb"></h:inputTextarea>
+						
+						
+						
+						<f:facet name="footer">
+							<h:commandButton value="Submit"
+								action="#{editProfile.saveUserProfile}">
+								<f:ajax execute="@form" render=":form1" />
+							</h:commandButton>
+						</f:facet>
+					</h:panelGrid>
+					
+					<h:message for="mb" style="color:red" />
+					
+				</h:form>
+				<br />
+				<br />
+
+			</ui:define>
+		</div>
+		<ui:define name="bottom">
+			<ui:include src="footer.xhtml"></ui:include>
+		</ui:define>
+		<ui:define name="Logout">
+			<ui:include src="logout.xhtml"></ui:include>
+		</ui:define>
+
+	</ui:composition>
+
+	<br />
+	<br />
+
+</h:body>
+
+</html>
